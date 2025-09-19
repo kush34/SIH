@@ -36,7 +36,7 @@ cd yourproject
 # Set Up pyhton service
 
 ```
-cd backend-python
+cd python
 python -m venv venv
 # Activate virtual environment
 # Linux/macOS
