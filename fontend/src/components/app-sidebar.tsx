@@ -12,9 +12,9 @@ import {
     SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Folder, Clock, MapPlus, UsersRound, MessageCircle, Settings, LogOut } from "lucide-react";
+import { Folder, Clock, MapPlus, UsersRound, MessageCircle, Settings, LogOut, ChartBar, SignalIcon } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { SignedIn, SignedOut, SignOutButton, useUser } from '@clerk/clerk-react';
+import { SignedIn, SignOutButton, useUser } from '@clerk/clerk-react';
 
 interface SidebarItem {
     title: string;
@@ -32,8 +32,9 @@ const adminItems: SidebarItem[] = [
     { title: "Dashboard", url: "/", icon: Folder },
     { title: "Camera Feeds", url: "/cameraFeed", icon: MapPlus },
     { title: "Manage Roads", url: "/roads", icon: UsersRound },
+    { title: "Signal", url: "/signals", icon: SignalIcon },
     { title: "Live Report", url: "/reports", icon: Clock },
-    // { title: "Alerts", url: "/alerts", icon: MessageCircle },
+    { title: "Analytics", url: "/analytics", icon: ChartBar },
 ];
 const volunteerItems: SidebarItem[] = [
     { title: "Assigned Cameras", url: "/cameras", icon: MapPlus },
@@ -58,7 +59,7 @@ export const AppSidebar: React.FC = () => {
     return (
         <Sidebar className="h-screen px-4 py-6 space-y-6">
             <SidebarHeader className="mb-6">
-                <span className="font-semibold text-2xl">SIH Brandi</span>
+                <span className="font-semibold text-2xl">SIH Brand</span>
             </SidebarHeader>
 
             <SidebarContent className="bg-none">
