@@ -4,6 +4,8 @@ import { clerkMiddleware } from '@clerk/express'
 import connectDB from "./config/database.js";
 import { Webhook } from "svix";
 import User from "./models/User.js";
+import { users } from '@clerk/clerk-sdk-node';
+
 
 const app = express();
 connectDB();
@@ -12,14 +14,14 @@ const PORT = process.env.PORT || 3000;
 app.use(clerkMiddleware())
 
 app.get("/health", (req, res) => {
-    res.send("Working fine...")
+  res.send("Working fine...")
 })
 
 app.get('/protected', (req, res) => {
-    // requireAuth throws 401 if not logged in
-    if (!req.auth.userId) return res.status(401).json({ message: 'Unauthorized' });
+  // requireAuth throws 401 if not logged in
+  if (!req.auth.userId) return res.status(401).json({ message: 'Unauthorized' });
 
-    res.json({ message: `Hello user ${req.auth.userId}` });
+  res.json({ message: `Hello user ${req.auth.userId}` });
 });
 
 app.post(
@@ -32,7 +34,12 @@ app.post(
 
       if (evt.type === "user.created") {
         const clerkUser = evt.data;
+        
         await User.create({ clerkId: clerkUser.id });
+
+        await users.updateUser(clerkUser.id, {
+          publicMetadata: { role: 'user' }
+        });
       }
 
       res.json({ ok: true });
@@ -43,7 +50,7 @@ app.post(
   }
 );
 app.listen(PORT, () => {
-    console.log(`Server running on :${PORT}`)
+  console.log(`Server running on :${PORT}`)
 })
 
 export default app;
