@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account - Traffic Management System</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+  <header class="banner">
+    <div>
+      <h2>Traffic Management System</h2>
+      <p>Choose your account type to get started →</p>
+    </div>
+    <div class="header-controls">
+      <button id="darkModeToggle" class="dark-mode-toggle" title="Toggle Dark Mode">
+        <span class="toggle-icon">🌙</span>
+      </button>
+      <img src="https://img.icons8.com/ios-filled/100/map.png" alt="map-icon">
+    </div>
+  </header>
+
+  <main class="account-container">
+    <div class="account-header">
+      <h1>Welcome to Traffic Management</h1>
+      <p>Select your account type to access the appropriate features</p>
+    </div>
+
+    <div class="account-types">
+      <div class="account-type-card citizen-card" data-type="citizen">
+        <div class="card-icon">
+          <span class="icon">👤</span>
+        </div>
+        <h3>Citizen Account</h3>
+        <p>Access traffic information, plan routes, and report incidents</p>
+        <div class="features">
+          <div class="feature-item">
+            <span class="feature-icon">🗺️</span>
+            <span>Real-time traffic updates</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">📍</span>
+            <span>Route planning</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">📱</span>
+            <span>Incident reporting</span>
+          </div>
+        </div>
+        <button class="select-type-btn" onclick="showSignupForm('citizen')">Continue as Citizen</button>
+      </div>
+
+      <div class="account-type-card admin-card" data-type="admin">
+        <div class="card-icon">
+          <span class="icon">🏛️</span>
+        </div>
+        <h3>Administration Account</h3>
+        <p>Manage traffic systems, monitor incidents, and control signals</p>
+        <div class="features">
+          <div class="feature-item">
+            <span class="feature-icon">🚦</span>
+            <span>Traffic signal control</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">📊</span>
+            <span>Analytics dashboard</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">⚙️</span>
+            <span>System management</span>
+          </div>
+        </div>
+        <button class="select-type-btn" onclick="showSignupForm('admin')">Continue as Admin</button>
+      </div>
+    </div>
+
+    <!-- Citizen Signup Form -->
+    <div class="signup-form" id="citizenForm" style="display: none;">
+      <div class="form-header">
+        <button class="back-btn" onclick="hideSignupForm()">← Back</button>
+        <h2>Citizen Account Setup</h2>
+        <p>Create your citizen account to access traffic services</p>
+      </div>
+      
+      <form class="signup-form-content">
+        <div class="form-group">
+          <label for="citizenName">Full Name</label>
+          <input type="text" id="citizenName" placeholder="Enter your full name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="citizenEmail">Email Address</label>
+          <input type="email" id="citizenEmail" placeholder="Enter your email" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="citizenPhone">Phone Number</label>
+          <div class="phone-input-group">
+            <select id="citizenCountryCode">
+              <option value="+91">🇮🇳 +91</option>
+              <option value="+1">🇺🇸 +1</option>
+              <option value="+44">🇬🇧 +44</option>
+            </select>
+            <input type="tel" id="citizenPhone" placeholder="Phone number" required>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="citizenLocation">Preferred Location</label>
+          <select id="citizenLocation">
+            <option value="">Select your area</option>
+            <option value="koramangala">Koramangala</option>
+            <option value="whitefield">Whitefield</option>
+            <option value="electronic-city">Electronic City</option>
+            <option value="indiranagar">Indiranagar</option>
+            <option value="jayanagar">Jayanagar</option>
+            <option value="malleshwaram">Malleshwaram</option>
+          </select>
+        </div>
+        
+        <button type="submit" class="submit-btn">Create Citizen Account</button>
+      </form>
+    </div>
+
+    <!-- Admin Signup Form -->
+    <div class="signup-form" id="adminForm" style="display: none;">
+      <div class="form-header">
+        <button class="back-btn" onclick="hideSignupForm()">← Back</button>
+        <h2>Administration Account Setup</h2>
+        <p>Create your administration account for system access</p>
+      </div>
+      
+      <form class="signup-form-content">
+        <div class="form-group">
+          <label for="adminName">Full Name</label>
+          <input type="text" id="adminName" placeholder="Enter your full name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="adminEmail">Official Email</label>
+          <input type="email" id="adminEmail" placeholder="Enter your official email" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="adminDepartment">Department</label>
+          <select id="adminDepartment" required>
+            <option value="">Select department</option>
+            <option value="traffic-police">Traffic Police</option>
+            <option value="municipal-corporation">Municipal Corporation</option>
+            <option value="transport-department">Transport Department</option>
+            <option value="emergency-services">Emergency Services</option>
+            <option value="city-planning">City Planning</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="adminId">Employee ID</label>
+          <input type="text" id="adminId" placeholder="Enter your employee ID" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="adminPhone">Contact Number</label>
+          <div class="phone-input-group">
+            <select id="adminCountryCode">
+              <option value="+91">🇮🇳 +91</option>
+              <option value="+1">🇺🇸 +1</option>
+              <option value="+44">🇬🇧 +44</option>
+            </select>
+            <input type="tel" id="adminPhone" placeholder="Contact number" required>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="adminLocation">Jurisdiction</label>
+          <select id="adminLocation" required>
+            <option value="">Select your jurisdiction</option>
+            <option value="bangalore-north">Bangalore North</option>
+            <option value="bangalore-south">Bangalore South</option>
+            <option value="bangalore-east">Bangalore East</option>
+            <option value="bangalore-west">Bangalore West</option>
+            <option value="bangalore-central">Bangalore Central</option>
+      </select>
+    </div>
+        
+        <button type="submit" class="submit-btn">Create Admin Account</button>
+      </form>
+    </div>
+
+    <div class="login-section">
+      <p>Already have an account? <a href="#" onclick="showLoginForm()">Sign In</a></p>
+    </div>
+  </main>
+
+  <footer class="bottom-nav">
+    <a href="index.html">🏠 Home</a>
+    <a href="signup.html" class="active">👤 Account</a>
+    <a href="report.html">📋 Report</a>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Account page specific JavaScript
+    function showSignupForm(type) {
+      // Hide all forms first
+      document.querySelectorAll('.signup-form').forEach(form => {
+        form.style.display = 'none';
+      });
+      
+      // Hide account type cards
+      document.querySelector('.account-types').style.display = 'none';
+      
+      // Show selected form
+      document.getElementById(type + 'Form').style.display = 'block';
+      
+      // Add animation
+      const form = document.getElementById(type + 'Form');
+      form.style.animation = 'slideInUp 0.5s ease-out';
+    }
+    
+    function hideSignupForm() {
+      // Hide all forms
+      document.querySelectorAll('.signup-form').forEach(form => {
+        form.style.display = 'none';
+      });
+      
+      // Show account type cards
+      document.querySelector('.account-types').style.display = 'flex';
+    }
+    
+    function showLoginForm() {
+      alert('Login functionality will be implemented soon!');
+    }
+    
+    // Form submission handlers
+    document.addEventListener('DOMContentLoaded', function() {
+      // Citizen form submission
+      document.getElementById('citizenForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Citizen account created successfully!');
+        window.location.href = 'index.html';
+      });
+      
+      // Admin form submission
+      document.getElementById('adminForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Administration account created successfully!');
+        window.location.href = 'index.html';
+      });
+    });
+  </script>
+</body>
+</html>
