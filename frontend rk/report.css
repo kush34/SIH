@@ -1,0 +1,142 @@
+/* --- Base & Reset --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  background-color: #f4f4f4;
+  color: #222;
+}
+
+/* --- Map Section --- */
+.map-section {
+  padding: 20px;
+}
+
+.map-placeholder {
+  width: 100%;
+  height: 250px;
+  background: #ddd;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #555;
+  font-weight: bold;
+}
+
+/* --- Report Box --- */
+.report-box {
+  background: #fff;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.report-box h3 {
+  margin-bottom: 15px;
+  color: #dc3545;
+}
+
+.accident-details p {
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #333;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+.action-buttons .danger {
+  flex: 1;
+  padding: 12px;
+  font-size: 16px;
+  background: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.action-buttons .danger:hover {
+  background: #b02a37;
+}
+
+/* --- Share Box --- */
+.share-box {
+  background: #fff;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.share-box h4 {
+  margin-bottom: 12px;
+}
+
+.share-buttons {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.share-buttons button {
+  flex: 1;
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.share-buttons button:hover {
+  opacity: 0.9;
+}
+
+.report-btn {
+  background: #007bff;
+  color: #fff;
+}
+
+.share-buttons button:not(.report-btn) {
+  background: #6c757d;
+  color: #fff;
+}
+
+/* --- Footer --- */
+.bottom-nav {
+  display: flex;
+  justify-content: space-around;
+  padding: 12px 0;
+  background: #007bff;
+  color: #fff;
+  position: sticky;
+  bottom: 0;
+}
+
+.bottom-nav a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.map-container {
+  width: 100%;
+  height: 300px;
+  border-radius: 10px;
+  margin: 20px 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
