@@ -10,66 +10,52 @@
 </head>
 <body>
   <header class="banner">
-    <div>
+    <div class="banner-text">
       <h2>Live Traffic Congestion Map</h2>
       <p>Select location and watch the traffic heat map →</p>
     </div>
     <div class="header-controls">
       <button id="darkModeToggle" class="dark-mode-toggle" title="Toggle Dark Mode">
-        <span class="toggle-icon">🌙</span>
+        🌙
       </button>
-      <img src="https://img.icons8.com/ios-filled/100/map.png" alt="map-icon">
+      <img src="https://img.icons8.com/ios-filled/100/map.png" alt="map-icon" class="map-icon">
     </div>
   </header>
 
   <main>
+    <!-- Search Box -->
     <div class="search-box">
       <input type="text" id="destinationInput" placeholder="Where to?">
       <button class="now-btn" id="searchBtn">Search</button>
     </div>
 
     <div class="options">
-      <p>📊 Predicted Congestion</p>
-      <p>📍 Set destination on map</p>
+      <p>Predicted Congestion</p>
+      <p>Set destination on map</p>
     </div>
 
+    <!-- Traffic Map -->
     <section class="map-section">
       <h3>Interactive Traffic Map</h3>
       <div class="traffic-legend">
-        <div class="legend-item">
-          <div class="legend-color low"></div>
-          <span>Low Traffic</span>
-        </div>
-        <div class="legend-item">
-          <div class="legend-color medium"></div>
-          <span>Medium Traffic</span>
-        </div>
-        <div class="legend-item">
-          <div class="legend-color high"></div>
-          <span>High Traffic</span>
-        </div>
+        <div class="legend-item"><div class="legend-color low"></div><span>Low Traffic</span></div>
+        <div class="legend-item"><div class="legend-color medium"></div><span>Medium Traffic</span></div>
+        <div class="legend-item"><div class="legend-color high"></div><span>High Traffic</span></div>
       </div>
       <div id="map" class="map-container"></div>
     </section>
 
+    <!-- Trip Planning -->
     <section class="trip-planning" id="tripPlanning" style="display: none;">
       <h3>Trip Planning</h3>
       <div class="selected-locations">
-        <div class="location-item">
-          <span class="location-label">From:</span>
-          <span id="fromLocation">Click on map to select</span>
-        </div>
-        <div class="location-item">
-          <span class="location-label">To:</span>
-          <span id="toLocation">Click on map to select</span>
-        </div>
+        <div class="location-item"><span class="location-label">From:</span><span id="fromLocation">Click on map to select</span></div>
+        <div class="location-item"><span class="location-label">To:</span><span id="toLocation">Click on map to select</span></div>
       </div>
-      
-      <div class="route-options" id="routeOptions">
-        <!-- Route options will be populated here -->
-      </div>
+      <div class="route-options" id="routeOptions"></div>
     </section>
 
+    <!-- Camera Feed -->
     <section class="camera-feed-section">
       <h3>Live Traffic Camera Feed</h3>
       <div class="camera-controls">
@@ -87,22 +73,14 @@
           </div>
         </div>
         <div class="camera-info">
-          <div class="info-item">
-            <span class="info-label">Location:</span>
-            <span class="info-value" id="cameraLocation">MG Road Junction</span>
-          </div>
-          <div class="info-item">
-            <span class="info-label">Status:</span>
-            <span class="info-value status-active" id="cameraStatus">Active</span>
-          </div>
-          <div class="info-item">
-            <span class="info-label">Vehicle Count:</span>
-            <span class="info-value" id="vehicleCount">24</span>
-          </div>
+          <div class="info-item"><span class="info-label">Location:</span><span class="info-value" id="cameraLocation">MG Road Junction</span></div>
+          <div class="info-item"><span class="info-label">Status:</span><span class="info-value status-active" id="cameraStatus">Active</span></div>
+          <div class="info-item"><span class="info-label">Vehicle Count:</span><span class="info-value" id="vehicleCount">24</span></div>
         </div>
       </div>
     </section>
 
+    <!-- Emergency Section -->
     <section class="emergency-section">
       <h3>Emergency Vehicle Detection</h3>
       <div class="emergency-controls">
@@ -128,19 +106,11 @@
     </section>
   </main>
 
+  <!-- Bottom Nav -->
   <footer class="bottom-nav">
-    <a href="index.html">
-      <span class="nav-icon home-icon"></span>
-      <span>Home</span>
-    </a>
-    <a href="signup.html">
-      <span class="nav-icon account-icon"></span>
-      <span>Account</span>
-    </a>
-    <a href="report.html">
-      <span class="nav-icon report-icon"></span>
-      <span>Report</span>
-    </a>
+    <a href="index.html"><span class="nav-icon home-icon"></span><span>Home</span></a>
+    <a href="signup.html"><span class="nav-icon account-icon"></span><span>Account</span></a>
+    <a href="report.html"><span class="nav-icon report-icon"></span><span>Report</span></a>
   </footer>
 
   <script src="script.js"></script>
