@@ -34,7 +34,7 @@ const AddRoadBlocks = () => {
 
   const handleSubmit = async () => {
     try {
-      await axios.post('/api/add-road-work', roadBlock);
+      await axios.post(`${import.meta.env.VITE_BASE_URL}/roads`, roadBlock);
       console.log('RoadBlock submitted:', roadBlock);
       setRoadBlock(initialState);
       setMarkerPosition(null);
