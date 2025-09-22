@@ -7,7 +7,7 @@ import User from "./models/User.js";
 import { users } from '@clerk/clerk-sdk-node';
 import trafficdata from "./models/trafficdata.js";
 import cors from 'cors';
-
+import roadRouter from "./routes/roadRouter.js"
 
 const app = express();
 connectDB();
@@ -21,7 +21,7 @@ app.use(
         credentials: true,
     })
 );
-
+app.use("/roads",roadRouter)
 app.get("/health", (req, res) => {
   res.send("Working fine...")
 })
