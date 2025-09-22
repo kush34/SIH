@@ -59,7 +59,7 @@ export const AppSidebar: React.FC = () => {
     return (
         <Sidebar className="h-screen px-4 py-6 space-y-6">
             <SidebarHeader className="mb-6">
-                <span className="font-semibold text-2xl">SIH Brand</span>
+                <span className="font-bold tracking-tighter text-2xl text-primary">Sanchalak</span>
             </SidebarHeader>
 
             <SidebarContent className="bg-none">
@@ -108,7 +108,7 @@ export const AppSidebar: React.FC = () => {
                 )}
             </SidebarContent>
 
-            <SidebarFooter className="flex items-center justify-center p-4">
+            <SidebarFooter className="flex items-center justify-center px-4 rounded-xl bg-neutral-100 shadow">
                 <div className="w-full flex items-center space-x-3">
                     <SignedIn>
                         <Avatar>
@@ -120,9 +120,8 @@ export const AppSidebar: React.FC = () => {
                             <div className="text-xs text-muted-foreground">{roleName as string}</div>
                         </div>
                         <SignOutButton>
-                            {/* You can wrap your own button */}
                             <button className="rounded text-red-500">
-                                <LogOut  className="w-5 h-5"/>
+                                <LogOut  className="w-4 h-4"/>
                             </button>
                         </SignOutButton>
                     </SignedIn>

@@ -4,7 +4,7 @@ import { Clock } from "lucide-react";
 
 export default function Landing() {
   return (
-    <div className="min-h-screen w-full flex flex-col bg-[#f8fafc] relative text-black">
+    <div className="min-h-screen w-full flex flex-col bg-[#f8fafc] relative text-primary">
       <div
         className="absolute inset-0 z-0"
         style={{
@@ -22,7 +22,7 @@ export default function Landing() {
 
       {/* Header */}
       <header className="px-6 py-4 flex justify-between items-center z-10 ">
-        <h1 className="text-2xl font-bold">Sevak</h1>
+        <h1 className="text-2xl font-bold tracking-tighter">Sanchalak</h1>
         <span className='border p-2 rounded '>
           <SignedOut>
           <SignInButton/>

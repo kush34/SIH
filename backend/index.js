@@ -6,6 +6,7 @@ import { Webhook } from "svix";
 import User from "./models/User.js";
 import { users } from '@clerk/clerk-sdk-node';
 import trafficdata from "./models/trafficdata.js";
+import cors from 'cors';
 
 
 const app = express();
@@ -14,6 +15,12 @@ const PORT = process.env.PORT || 3000;
 
 app.use(clerkMiddleware())
 app.use(express.json());
+app.use(
+    cors({
+        origin: `${process.env.Frontend_URL}`, 
+        credentials: true,
+    })
+);
 
 app.get("/health", (req, res) => {
   res.send("Working fine...")
@@ -36,6 +43,26 @@ app.post('/traffic-data',async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Server error' });
+  }
+});
+
+
+app.get('/traffic-data', async (req, res) => {
+  try {
+    const latestData = await trafficdata
+      .find()                     
+      .sort({ timestamp: -1 })    
+      .limit(5)                   
+      .lean();
+
+    if (!latestData || latestData.length === 0) {
+      return res.status(404).json({ message: 'No traffic data found' });
+    }
+
+    res.status(200).json(latestData);
+  } catch (error) {
+    console.error('Error fetching traffic data:', error);
+    res.status(500).json({ error: 'Internal server error' });
   }
 });
 
