@@ -117,7 +117,7 @@ class VehicleDetectionPipeline:
             timestamp = time.time()
             self.queue_data(vehicle_count, timestamp)
             
-            self.latest_frame = ann otated_frame.copy()
+            self.latest_frame = annotated_frame.copy()
             cv2.putText(annotated_frame, f"Vehicles: {vehicle_count}", 
                         (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
             cv2.imshow("Vehicle Detection", annotated_frame)

@@ -2,3 +2,5 @@
 test_vid.mkv
 /python/yolov8n.pt
 /python/venv/*
+test_vid.mp4
+test.mp4

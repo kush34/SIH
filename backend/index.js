@@ -5,6 +5,7 @@ import connectDB from "./config/database.js";
 import { Webhook } from "svix";
 import User from "./models/User.js";
 import { users } from '@clerk/clerk-sdk-node';
+import trafficdata from "./models/trafficdata.js";
 
 
 const app = express();
@@ -12,16 +13,30 @@ connectDB();
 const PORT = process.env.PORT || 3000;
 
 app.use(clerkMiddleware())
+app.use(express.json());
 
 app.get("/health", (req, res) => {
   res.send("Working fine...")
 })
 
-app.get('/protected', (req, res) => {
-  // requireAuth throws 401 if not logged in
-  if (!req.auth.userId) return res.status(401).json({ message: 'Unauthorized' });
+app.post('/traffic-data',async (req, res) => {
+  try {
+    const { camera_id, vehicle_count, timestamp, avg_count } = req.body;
+    console.log(camera_id, vehicle_count, timestamp, avg_count);
+    if(!camera_id || !vehicle_count || !timestamp || !avg_count) return res.send("incomplete data. Required Data:camera_id, vehicle_count, timestamp, avg_count ")
+    const data = new trafficdata({
+      camera_id,
+      vehicle_count,
+      timestamp: new Date(timestamp * 1000), 
+      avg_count
+    });
 
-  res.json({ message: `Hello user ${req.auth.userId}` });
+    await data.save();
+    res.status(201).json({ message: 'Traffic data saved', data });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
 });
 
 app.post(
@@ -34,7 +49,7 @@ app.post(
 
       if (evt.type === "user.created") {
         const clerkUser = evt.data;
-        
+
         await User.create({ clerkId: clerkUser.id });
 
         await users.updateUser(clerkUser.id, {
